@@ -1,0 +1,108 @@
+{
+  "edges": [
+    {
+      "commitment_amount": 2400000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-001",
+      "relationship_type": "sponsor_commitment",
+      "source": "Apollo Infrastructure Credit",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000001",
+          "cited_at": "2026-06-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-northlake.htm"
+        }
+      ],
+      "target": "Northlake AI Infrastructure LLC"
+    },
+    {
+      "commitment_amount": 1800000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-002",
+      "relationship_type": "built_to_suit_lease",
+      "source": "Northlake AI Infrastructure LLC",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000001",
+          "cited_at": "2026-06-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-northlake.htm"
+        }
+      ],
+      "target": "CloudNorth Compute"
+    },
+    {
+      "commitment_amount": 1600000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-003",
+      "relationship_type": "note_purchase",
+      "source": "Brookfield Infrastructure",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000002",
+          "cited_at": "2026-06-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-helios.htm"
+        }
+      ],
+      "target": "Helios GPU Funding DAC"
+    },
+    {
+      "commitment_amount": 1250000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-004",
+      "relationship_type": "gpu_lease",
+      "source": "Helios GPU Funding DAC",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000002",
+          "cited_at": "2026-06-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-helios.htm"
+        }
+      ],
+      "target": "Frontier Model Hosting Co."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "Apollo Infrastructure Credit",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "Brookfield Infrastructure",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "CloudNorth Compute",
+      "kind": "counterparty"
+    },
+    {
+      "id": "Frontier Model Hosting Co.",
+      "kind": "counterparty"
+    },
+    {
+      "id": "Helios GPU Funding DAC",
+      "jurisdiction": "Ireland",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000002",
+          "cited_at": "2026-06-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-helios.htm"
+        }
+      ]
+    },
+    {
+      "id": "Northlake AI Infrastructure LLC",
+      "jurisdiction": "Delaware",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000001",
+          "cited_at": "2026-06-20",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-northlake.htm"
+        }
+      ]
+    }
+  ]
+}
