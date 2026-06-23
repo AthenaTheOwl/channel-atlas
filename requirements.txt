@@ -1,2 +1,7 @@
+# Streamlit Community Cloud reads this file. The app reads the committed
+# reports/*.graph.json directly AND drives the real engine, so it installs
+# the local package (`.`) to import channel_atlas.graph.build_graph and
+# channel_atlas.show.counterparty_exposure.
 streamlit>=1.40
 pandas>=2.0
+.
