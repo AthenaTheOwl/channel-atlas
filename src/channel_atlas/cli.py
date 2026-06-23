@@ -7,6 +7,7 @@ from pathlib import Path
 from .graph import build_graph
 from .loader import load_records
 from .report import render_report, write_json, write_jsonl
+from .show import render_show
 from .validation import validate_citations
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -39,10 +40,14 @@ def main(argv: list[str] | None = None) -> int:
     build_cmd = sub.add_parser("build")
     build_cmd.add_argument("--quarter", default="2026q2")
     sub.add_parser("validate")
+    sub.add_parser("show")
     args = parser.parse_args(argv)
     if args.command == "build":
         paths = build(args.quarter)
         print(json.dumps({key: value.relative_to(ROOT).as_posix() for key, value in paths.items()}, sort_keys=True))
+        return 0
+    if args.command == "show":
+        print(render_show())
         return 0
     validate_all()
     print("valid: graph")

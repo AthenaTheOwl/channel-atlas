@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from src.channel_atlas.loader import load_records
+from src.channel_atlas.show import counterparty_exposure, load_graph, rank_edges, render_show
 from src.channel_atlas.validation import read_jsonl, validate_citations
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,4 +43,38 @@ def test_graph_has_cited_edges() -> None:
 
 def test_outputs_are_jsonl() -> None:
     assert read_jsonl(ROOT / "data" / "counterparty_edges" / "2026q2.jsonl")
+
+
+def test_show_ranks_edges_descending() -> None:
+    graph = load_graph()
+    edges = rank_edges(graph)
+    amounts = [e["commitment_amount"] for e in edges]
+    assert amounts == sorted(amounts, reverse=True)
+    assert amounts[0] == 2400000000.0
+
+
+def test_show_exposure_concentration() -> None:
+    exposure = counterparty_exposure(load_graph())
+    assert exposure[0][0] == "Northlake AI Infrastructure LLC"
+    assert exposure[0][1] == 2400000000.0
+
+
+def test_show_renders_headline_and_table() -> None:
+    out = render_show()
+    assert "channel-atlas" in out
+    assert "financing edges, ranked by commitment" in out
+    assert "headline:" in out
+    assert "$7.05B" in out
+
+
+def test_cli_show_runs_offline() -> None:
+    result = subprocess.run(
+        [sys.executable, "-m", "channel_atlas", "show"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    assert "headline:" in result.stdout
+    assert result.returncode == 0
 

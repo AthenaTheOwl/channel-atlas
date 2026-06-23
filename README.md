@@ -30,17 +30,38 @@ v0.1 shipped and runs end to end. The entry command `python -m src.channel_atlas
 
 ## How to run
 
-Placeholder. The first runnable surface will land in the first PR after
-this scaffold, described in `docs/first-pr.md`. The longer-term run
-contract will land in spec `0002-*` once `0001-foundation` is closed
-out.
+```bash
+# build the graph + report from the checked-in fixture ledger
+python -m channel_atlas build --quarter 2026q2
 
-Once implemented, the entry point will be something like:
+# print a ranked, readable view of the committed graph (read-only, offline)
+python -m channel_atlas show
+
+# re-validate that every node and edge cites a source filing
+python -m channel_atlas validate
+```
+
+`show` reads `reports/2026q2-spv-counterparty.graph.json` and prints the
+financing edges ranked by commitment, inbound exposure by receiving
+entity, and a one-line headline naming the largest financing sink.
+
+## live demo
+
+Browse the same graph interactively:
 
 ```bash
-uv run channel-atlas ingest --filer apollo --window 2024-01:2026-06
-uv run channel-atlas render --graph data/spv_graph.json --out reports/
+pip install -r requirements.txt
+streamlit run streamlit_app.py
 ```
+
+The app reads `reports/2026q2-spv-counterparty.graph.json` directly
+(no network, no secrets): ranked financing edges, inbound exposure by
+receiving entity, a relationship-type filter, and a headline callout.
+
+Deploy on Streamlit Cloud: repo `AthenaTheOwl/channel-atlas`, branch
+`main`, main file `streamlit_app.py`.
+
+<!-- live-url: https://share.streamlit.io/... (fill in after first deploy) -->
 
 ## Layout
 
