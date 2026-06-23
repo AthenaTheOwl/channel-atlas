@@ -25,11 +25,8 @@ infrastructure teams, S&P and Moody's analysts.
 
 ## Status
 
-v0 scaffold. No implementation yet. This repo holds the README, the
-license, the operating contract for AI agents, the first foundation
-spec (requirements, design, tasks, acceptance), and the literal first PR
-plan in `docs/first-pr.md`. The next merge lands the schema and the
-ingest skeleton for one filer.
+
+v0.1 shipped and runs end to end. The entry command `python -m src.channel_atlas build` runs. See `specs/0002-design/` for the v0.1 scope and `STATUS.md` (where present) for the current state and next-feature queue.
 
 ## How to run
 
