@@ -1,34 +1,92 @@
-# ChannelAtlas
+# channel-atlas
 
-Open catalog of hyperscaler off-balance-sheet AI-infra financing. A
-structured database of every JV, SPV, private-credit, leasing,
-build-to-suit, and sale-leaseback structure financing AI infrastructure
-(Apollo, Blackstone, Brookfield, KKR, Carlyle), tied to the specific
-data-center campuses and GPU fleets they back.
+A sponsor commits $2.4B to a Delaware LLC. The LLC signs a build-to-suit lease for a
+data-center campus. None of it lands on the sponsor's balance sheet, and the four hops
+from check to GPU sit in four separate filings. channel-atlas wires them into one graph.
 
-## What this is
+## What it does
 
-Hyperscaler debt issuance hit 108B USD in 2025, 3.4x the prior average.
-Anthropic financed TPUs via 35B USD of private credit. Reported 2026
-capex figures understate true AI-infra spend by an off-balance-sheet
-share that nobody has fused into a single counterparty graph.
+The financing that builds AI infrastructure mostly does not show up where you'd look
+for it. It moves through SPVs, joint ventures, private credit, build-to-suit leases,
+and note purchases — structures designed so the spend stays off the sponsor's books and
+the exposure lands on an entity nobody has a name for yet. Reported capex understates
+the real number by exactly the amount that took the off-balance-sheet route, and the
+disclosures that would close the gap are scattered one per 8-K.
 
-ChannelAtlas is the place that fusion happens. The first artifact is a
-public PDF report covering every disclosed AI-infra SPV / JV /
-private-credit deal in 2024-2026, with a counterparty graph rendered in
-Cytoscape, tied to the specific data-center campuses where the financing
-lands.
+channel-atlas reads those disclosures into a counterparty graph: who funded which
+vehicle, which campus or GPU fleet the money backs, and how much exposure piles up on
+each receiving entity. Every node and every edge has to cite a source filing or it does
+not enter the graph. v0.1 ships one quarter as a checked-in fixture ledger — six
+entities, four financing edges, $7.05B disclosed. The model and the citation gate are
+the point; the data adapter is deliberately small.
 
-Buyers: credit hedge funds, equity L/S desks, Fortune 500 CFOs
-assessing supplier-concentration risk, sovereign wealth fund
-infrastructure teams, S&P and Moody's analysts.
+## Try it
 
-## Status
+One command, offline, no keys. It reads the committed graph and prints the ranked view:
 
+```bash
+python -m channel_atlas show
+```
 
-v0.1 shipped and runs end to end. The entry command `python -m src.channel_atlas build` runs. See `specs/0002-design/` for the v0.1 scope and `STATUS.md` (where present) for the current state and next-feature queue.
+```
+channel-atlas - AI-infra SPV financing graph (2026q2)
 
-## How to run
+6 entities | 2 SPVs | 2 sponsors | 4 financing edges | $7.05B disclosed
+
+financing edges, ranked by commitment:
+
+   #     amount  type                  flow
+  --  ---------  --------------------  ----------------------------------------
+   1     $2.40B  sponsor_commitment    Apollo Infrastructure Credit -> Northlake AI Infrastructure LLC
+   2     $1.80B  built_to_suit_lease   Northlake AI Infrastructure LLC -> CloudNorth Compute
+   3     $1.60B  note_purchase         Brookfield Infrastructure -> Helios GPU Funding DAC
+   4     $1.25B  gpu_lease             Helios GPU Funding DAC -> Frontier Model Hosting Co.
+
+inbound exposure, ranked by receiving entity:
+
+     $2.40B  Northlake AI Infrastructure LLC
+     $1.80B  CloudNorth Compute
+     $1.60B  Helios GPU Funding DAC
+     $1.25B  Frontier Model Hosting Co.
+
+headline: Northlake AI Infrastructure LLC is the single largest financing sink at $2.40B (34% of disclosed commitments). every edge cites a source filing.
+```
+
+Ranked by commitment, biggest check first, then the same money summed by where it lands.
+The largest sink is where concentration risk would show up first.
+
+## Live demo
+
+Browse the same graph interactively:
+
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+The app reads `reports/2026q2-spv-counterparty.graph.json` directly (no network, no
+secrets): ranked financing edges, inbound exposure by receiving entity, a
+relationship-type filter, and a headline callout.
+
+Deploy on Streamlit Cloud: repo `AthenaTheOwl/channel-atlas`, branch `main`, main file
+`streamlit_app.py`.
+
+<!-- live-url: https://share.streamlit.io/... (fill in after first deploy) -->
+
+## How it connects
+
+channel-atlas is the financing side of the same AI-infra demand curve the rest of the
+cluster traces from other angles:
+
+- [grid-silicon](https://github.com/AthenaTheOwl/grid-silicon) — scores how much of an
+  announced datacenter load actually got energized, the power-side gap under the money.
+- [interconnect-alpha](https://github.com/AthenaTheOwl/interconnect-alpha) — the
+  survival model: probability a queued project ever reaches commercial operation.
+- [chip-supply-chain-map](https://github.com/AthenaTheOwl/chip-supply-chain-map) /
+  [fab-risk-radar](https://github.com/AthenaTheOwl/fab-risk-radar) — the silicon end of
+  the GPU fleets this financing is collateralized against.
+
+## Run it in full
 
 ```bash
 # build the graph + report from the checked-in fixture ledger
@@ -41,79 +99,18 @@ python -m channel_atlas show
 python -m channel_atlas validate
 ```
 
-`show` reads `reports/2026q2-spv-counterparty.graph.json` and prints the
-financing edges ranked by commitment, inbound exposure by receiving
-entity, and a one-line headline naming the largest financing sink.
-
-## live demo
-
-Browse the same graph interactively:
-
-```bash
-pip install -r requirements.txt
-streamlit run streamlit_app.py
-```
-
-The app reads `reports/2026q2-spv-counterparty.graph.json` directly
-(no network, no secrets): ranked financing edges, inbound exposure by
-receiving entity, a relationship-type filter, and a headline callout.
-
-Deploy on Streamlit Cloud: repo `AthenaTheOwl/channel-atlas`, branch
-`main`, main file `streamlit_app.py`.
-
-<!-- live-url: https://share.streamlit.io/... (fill in after first deploy) -->
+`build` reads `data/fixtures/2026q2-spv-ledger.csv` and writes the SPV records,
+counterparty edges, graph JSON, and markdown report. `validate` exits zero only when
+every node and edge carries a filing citation.
 
 ## Layout
 
 ```
-channel-atlas/
-  README.md                          # this file
-  LICENSE                            # MIT
-  AGENTS.md                          # operating contract for AI agents
-  .gitignore
-  specs/
-    0001-foundation/
-      requirements.md                # R-CAT-NNN requirements
-      design.md                      # architecture sketch
-      tasks.md                       # ordered task list for first 2-3 PRs
-      acceptance.md                  # what v0 done means
-  docs/
-    first-pr.md                      # the literal first PR after scaffold
+src/channel_atlas/    loader, graph build, report, show, validation, cli
+data/fixtures/        the committed SPV ledger v0.1 ships
+reports/              2026q2 graph JSON + markdown report
+schemas/  specs/  decisions/  docs/  tests/
 ```
-
-Downstream additions named by the foundation spec:
-
-```
-  src/channel_atlas/
-    extract/edgar.py                 # citation-faithful 8-K / 10-K extraction
-    extract/lp_disclosure.py         # state pension / CalPERS / CPP LP filings
-    extract/ucc.py                   # UCC-1 financing statements
-    extract/spv_registry.py          # Cayman / Delaware SPV lookups
-    extract/abs_prospectus.py        # ABS shelf filings
-    graph/build.py                   # counterparty graph build
-    graph/cytoscape_export.py        # render-ready JSON
-    report/render.py                 # markdown / PDF report
-  schemas/
-    spv_record.schema.json
-    counterparty_edge.schema.json
-  data/
-    raw/                             # gitignored
-    cache/                           # gitignored
-    spv_graph_2024_2026.json         # checked-in artifact for the first report
-  reports/
-    2026-Q3-spv-counterparty.md      # the first published report
-  eval/
-    citation_faithfulness.py         # gate: every edge has a SEC / filing URL
-  decisions/
-    DEC-CAT-001-evidence-rubric.md
-```
-
-## Voice and gates
-
-See `AGENTS.md`. Plain assertions. No "leverage", "demonstrates",
-"synergy", "seamless", "cutting-edge", "best-in-class". No antithetical
-reversals as a structural device. Every counterparty edge cites the
-source filing.
 
 ## License
 
