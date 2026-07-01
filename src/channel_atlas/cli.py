@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from .graph import build_graph
@@ -43,6 +44,13 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("show")
     args = parser.parse_args(argv)
     if args.command == "build":
+        ledger = ROOT / "data" / "fixtures" / f"{args.quarter}-spv-ledger.csv"
+        if not ledger.is_file():
+            # A mistyped --quarter is the common case; name it and the path we looked for
+            # instead of letting the loader surface a raw FileNotFoundError traceback.
+            rel = ledger.relative_to(ROOT).as_posix()
+            print(f"no ledger fixture for quarter {args.quarter} (expected {rel})", file=sys.stderr)
+            return 1
         paths = build(args.quarter)
         print(json.dumps({key: value.relative_to(ROOT).as_posix() for key, value in paths.items()}, sort_keys=True))
         return 0
