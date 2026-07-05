@@ -1,0 +1,261 @@
+{
+  "edges": [
+    {
+      "commitment_amount": 2100000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-005",
+      "relationship_type": "sponsor_commitment",
+      "source": "Kestrel Infrastructure Partners",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000003",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-meridian.htm"
+        }
+      ],
+      "target": "Meridian Compute Trust LLC"
+    },
+    {
+      "commitment_amount": 1700000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-006",
+      "relationship_type": "capacity_lease",
+      "source": "Meridian Compute Trust LLC",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000003",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-meridian.htm"
+        }
+      ],
+      "target": "Aurora Model Systems"
+    },
+    {
+      "commitment_amount": 1450000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-007",
+      "relationship_type": "note_purchase",
+      "source": "Stonebridge Digital Credit",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000004",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm"
+        }
+      ],
+      "target": "Blue Mesa Accelerator Funding DAC"
+    },
+    {
+      "commitment_amount": 1325000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-008",
+      "relationship_type": "gpu_lease",
+      "source": "Blue Mesa Accelerator Funding DAC",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000004",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm"
+        }
+      ],
+      "target": "Vantage Cloud Services"
+    },
+    {
+      "commitment_amount": 1800000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-009",
+      "relationship_type": "equity_commitment",
+      "source": "Ridgewater Infrastructure",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000005",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-cascadia.htm"
+        }
+      ],
+      "target": "Cascadia Data Center JV LP"
+    },
+    {
+      "commitment_amount": 1550000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-010",
+      "relationship_type": "built_to_suit_lease",
+      "source": "Cascadia Data Center JV LP",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000005",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-cascadia.htm"
+        }
+      ],
+      "target": "Cedar River Compute"
+    },
+    {
+      "commitment_amount": 950000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-011",
+      "relationship_type": "warehouse_facility",
+      "source": "Harborlight Asset Management",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000006",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-lumenpeak.htm"
+        }
+      ],
+      "target": "LumenPeak AI Lease Trust"
+    },
+    {
+      "commitment_amount": 825000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-012",
+      "relationship_type": "receivable_purchase",
+      "source": "LumenPeak AI Lease Trust",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000006",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-lumenpeak.htm"
+        }
+      ],
+      "target": "Northstar Inference Labs"
+    },
+    {
+      "commitment_amount": 1175000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-013",
+      "relationship_type": "term_loan",
+      "source": "Tanager Private Credit",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000007",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-silverrail.htm"
+        }
+      ],
+      "target": "Silverrail Compute Finance LLC"
+    },
+    {
+      "commitment_amount": 990000000.0,
+      "commitment_currency": "USD",
+      "id": "cat-edge-014",
+      "relationship_type": "colocation_financing",
+      "source": "Silverrail Compute Finance LLC",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000007",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-silverrail.htm"
+        }
+      ],
+      "target": "Eastgate Cloud Operations"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "Aurora Model Systems",
+      "kind": "counterparty"
+    },
+    {
+      "id": "Blue Mesa Accelerator Funding DAC",
+      "jurisdiction": "Ireland",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000004",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm"
+        }
+      ]
+    },
+    {
+      "id": "Cascadia Data Center JV LP",
+      "jurisdiction": "Delaware",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000005",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-cascadia.htm"
+        }
+      ]
+    },
+    {
+      "id": "Cedar River Compute",
+      "kind": "counterparty"
+    },
+    {
+      "id": "Eastgate Cloud Operations",
+      "kind": "counterparty"
+    },
+    {
+      "id": "Harborlight Asset Management",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "Kestrel Infrastructure Partners",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "LumenPeak AI Lease Trust",
+      "jurisdiction": "Cayman Islands",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000006",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-lumenpeak.htm"
+        }
+      ]
+    },
+    {
+      "id": "Meridian Compute Trust LLC",
+      "jurisdiction": "Delaware",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000003",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-meridian.htm"
+        }
+      ]
+    },
+    {
+      "id": "Northstar Inference Labs",
+      "kind": "counterparty"
+    },
+    {
+      "id": "Ridgewater Infrastructure",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "Silverrail Compute Finance LLC",
+      "jurisdiction": "Delaware",
+      "kind": "spv",
+      "source_filings": [
+        {
+          "accession_number": "0000000000-26-000007",
+          "cited_at": "2026-09-30",
+          "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-silverrail.htm"
+        }
+      ]
+    },
+    {
+      "id": "Stonebridge Digital Credit",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "Tanager Private Credit",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "Vantage Cloud Services",
+      "kind": "counterparty"
+    }
+  ]
+}

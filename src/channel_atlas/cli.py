@@ -41,7 +41,8 @@ def main(argv: list[str] | None = None) -> int:
     build_cmd = sub.add_parser("build")
     build_cmd.add_argument("--quarter", default="2026q2")
     sub.add_parser("validate")
-    sub.add_parser("show")
+    show_cmd = sub.add_parser("show")
+    show_cmd.add_argument("--quarter", default="2026q2")
     args = parser.parse_args(argv)
     if args.command == "build":
         ledger = ROOT / "data" / "fixtures" / f"{args.quarter}-spv-ledger.csv"
@@ -55,7 +56,12 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({key: value.relative_to(ROOT).as_posix() for key, value in paths.items()}, sort_keys=True))
         return 0
     if args.command == "show":
-        print(render_show())
+        graph = ROOT / "reports" / f"{args.quarter}-spv-counterparty.graph.json"
+        if not graph.is_file():
+            rel = graph.relative_to(ROOT).as_posix()
+            print(f"no graph for quarter {args.quarter} (expected {rel})", file=sys.stderr)
+            return 1
+        print(render_show(path=graph, quarter=args.quarter))
         return 0
     validate_all()
     print("valid: graph")

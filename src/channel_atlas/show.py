@@ -33,7 +33,7 @@ def _fmt_usd(amount: float) -> str:
     return f"${amount:,.0f}"
 
 
-def render_show(path: Path = DEFAULT_GRAPH) -> str:
+def render_show(path: Path = DEFAULT_GRAPH, quarter: str = "2026q2") -> str:
     graph = load_graph(path)
     edges = rank_edges(graph)
     nodes = list(graph.get("nodes", []))  # type: ignore[arg-type]
@@ -42,7 +42,7 @@ def render_show(path: Path = DEFAULT_GRAPH) -> str:
     total = sum(float(e.get("commitment_amount", 0.0)) for e in edges)
 
     lines: list[str] = []
-    lines.append("channel-atlas - AI-infra SPV financing graph (2026q2)")
+    lines.append(f"channel-atlas - AI-infra SPV financing graph ({quarter})")
     lines.append("")
     lines.append(
         f"{len(nodes)} entities | {len(spvs)} SPVs | {len(sponsors)} sponsors | "
