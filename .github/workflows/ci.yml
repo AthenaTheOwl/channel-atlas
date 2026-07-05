@@ -44,3 +44,6 @@ jobs:
 
       - name: check-citation-faithfulness
         run: python -m uv run python scripts/check_citation_faithfulness.py
+
+      - name: validate-schemas
+        run: python -m uv run python scripts/validate_schemas.py

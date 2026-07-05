@@ -4,6 +4,11 @@ version = "0.1.0"
 description = "Fixture-backed SPV counterparty graph for AI infrastructure financing."
 requires-python = ">=3.11"
 
+[dependency-groups]
+dev = [
+    "jsonschema>=4.0",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = [".", "src"]
