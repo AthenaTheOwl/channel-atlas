@@ -16,9 +16,10 @@ disclosures that would close the gap are scattered one per 8-K.
 channel-atlas reads those disclosures into a counterparty graph: who funded which
 vehicle, which campus or GPU fleet the money backs, and how much exposure piles up on
 each receiving entity. Every node and every edge has to cite a source filing or it does
-not enter the graph. v0.1 ships one quarter as a checked-in fixture ledger — six
-entities, four financing edges, $7.05B disclosed. The model and the citation gate are
-the point; the data adapter is deliberately small.
+not enter the graph. v0.1 ships two checked-in quarters: 2026q2 has six entities,
+four financing edges, and $7.05B disclosed; 2026q3 has fifteen entities, ten edges,
+and $13.87B. The month-over-month shape is now testable while the adapter remains
+fixture-backed.
 
 ## Try it
 
@@ -26,6 +27,7 @@ One command, offline, no keys. It reads the committed graph and prints the ranke
 
 ```bash
 python -m channel_atlas show
+python -m channel_atlas show --quarter 2026q3
 ```
 
 ```
@@ -64,9 +66,10 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-The app reads `reports/2026q2-spv-counterparty.graph.json` directly (no network, no
-secrets): ranked financing edges, inbound exposure by receiving entity, a
-relationship-type filter, and a headline callout.
+The app reads the canonical 2026q2 graph directly (no network, no secrets): ranked
+financing edges, inbound exposure by receiving entity, a relationship-type filter,
+and a headline callout. The CLI exposes both committed quarters; the browser has not
+yet gained a quarter selector.
 
 Deploy on Streamlit Cloud: repo `AthenaTheOwl/channel-atlas`, branch `main`, main file
 `streamlit_app.py`.
@@ -92,23 +95,24 @@ cluster traces from other angles:
 # build the graph + report from the checked-in fixture ledger
 python -m channel_atlas build --quarter 2026q2
 
-# print a ranked, readable view of the committed graph (read-only, offline)
+# print either committed quarter (read-only, offline)
 python -m channel_atlas show
+python -m channel_atlas show --quarter 2026q3
 
 # re-validate that every node and edge cites a source filing
 python -m channel_atlas validate
 ```
 
-`build` reads `data/fixtures/2026q2-spv-ledger.csv` and writes the SPV records,
-counterparty edges, graph JSON, and markdown report. `validate` exits zero only when
-every node and edge carries a filing citation.
+`build` reads the selected `data/fixtures/<quarter>-spv-ledger.csv` and writes the SPV
+records, counterparty edges, graph JSON, and markdown report. `validate` exits zero
+only when every node and edge carries a filing citation.
 
 ## Layout
 
 ```
 src/channel_atlas/    loader, graph build, report, show, validation, cli
 data/fixtures/        the committed SPV ledger v0.1 ships
-reports/              2026q2 graph JSON + markdown report
+reports/              2026q2 and 2026q3 graph JSON + markdown reports
 schemas/  specs/  decisions/  docs/  tests/
 ```
 
