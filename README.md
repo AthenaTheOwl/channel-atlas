@@ -119,3 +119,7 @@ schemas/  specs/  decisions/  docs/  tests/
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Method update
+
+[October method update: Follow the cash path before adding the edges](docs/financing-exposure.md).
