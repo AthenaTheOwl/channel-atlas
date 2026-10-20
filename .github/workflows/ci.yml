@@ -47,3 +47,6 @@ jobs:
 
       - name: validate-schemas
         run: python -m uv run python scripts/validate_schemas.py
+
+      - name: voice-lint
+        run: python -m uv run python scripts/voice_lint.py

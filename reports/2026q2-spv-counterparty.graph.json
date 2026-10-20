@@ -1,11 +1,13 @@
 {
+  "data_status": "synthetic",
   "edges": [
     {
       "commitment_amount": 2400000000.0,
       "commitment_currency": "USD",
+      "data_status": "synthetic",
       "id": "cat-edge-001",
       "relationship_type": "sponsor_commitment",
-      "source": "Apollo Infrastructure Credit",
+      "source": "Fixture Sponsor Alpha Credit",
       "source_filings": [
         {
           "accession_number": "0000000000-26-000001",
@@ -18,6 +20,7 @@
     {
       "commitment_amount": 1800000000.0,
       "commitment_currency": "USD",
+      "data_status": "synthetic",
       "id": "cat-edge-002",
       "relationship_type": "built_to_suit_lease",
       "source": "Northlake AI Infrastructure LLC",
@@ -33,9 +36,10 @@
     {
       "commitment_amount": 1600000000.0,
       "commitment_currency": "USD",
+      "data_status": "synthetic",
       "id": "cat-edge-003",
       "relationship_type": "note_purchase",
-      "source": "Brookfield Infrastructure",
+      "source": "Fixture Sponsor Beta Infrastructure",
       "source_filings": [
         {
           "accession_number": "0000000000-26-000002",
@@ -48,6 +52,7 @@
     {
       "commitment_amount": 1250000000.0,
       "commitment_currency": "USD",
+      "data_status": "synthetic",
       "id": "cat-edge-004",
       "relationship_type": "gpu_lease",
       "source": "Helios GPU Funding DAC",
@@ -63,24 +68,25 @@
   ],
   "nodes": [
     {
-      "id": "Apollo Infrastructure Credit",
-      "kind": "sponsor",
-      "source_filings": []
-    },
-    {
-      "id": "Brookfield Infrastructure",
-      "kind": "sponsor",
-      "source_filings": []
-    },
-    {
       "id": "CloudNorth Compute",
       "kind": "counterparty"
+    },
+    {
+      "id": "Fixture Sponsor Alpha Credit",
+      "kind": "sponsor",
+      "source_filings": []
+    },
+    {
+      "id": "Fixture Sponsor Beta Infrastructure",
+      "kind": "sponsor",
+      "source_filings": []
     },
     {
       "id": "Frontier Model Hosting Co.",
       "kind": "counterparty"
     },
     {
+      "data_status": "synthetic",
       "id": "Helios GPU Funding DAC",
       "jurisdiction": "Ireland",
       "kind": "spv",
@@ -93,6 +99,7 @@
       ]
     },
     {
+      "data_status": "synthetic",
       "id": "Northlake AI Infrastructure LLC",
       "jurisdiction": "Delaware",
       "kind": "spv",

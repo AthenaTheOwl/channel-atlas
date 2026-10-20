@@ -43,6 +43,11 @@ def render_show(path: Path = DEFAULT_GRAPH, quarter: str = "2026q2") -> str:
 
     lines: list[str] = []
     lines.append(f"channel-atlas - AI-infra SPV financing graph ({quarter})")
+    if graph.get("data_status") != "public_filing":
+        lines.append(
+            f"illustrative {graph.get('data_status', 'unlabelled')} fixture: sponsors, SPVs, "
+            "amounts and filing links are invented, not real deals"
+        )
     lines.append("")
     lines.append(
         f"{len(nodes)} entities | {len(spvs)} SPVs | {len(sponsors)} sponsors | "
@@ -78,6 +83,10 @@ def render_show(path: Path = DEFAULT_GRAPH, quarter: str = "2026q2") -> str:
         lines.append(
             f"headline: {top_name} is the single largest financing sink at "
             f"{_fmt_usd(top_amt)} ({share:.0f}% of disclosed commitments). "
-            "every edge cites a source filing."
+            + (
+                "every edge cites a source filing."
+                if graph.get("data_status") == "public_filing"
+                else "every edge cites a fixture filing link."
+            )
         )
     return "\n".join(lines)

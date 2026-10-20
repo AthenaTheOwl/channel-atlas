@@ -1,5 +1,7 @@
 # ChannelAtlas SPV counterparty graph - 2026q3
 
+> Illustrative synthetic fixture. Every sponsor, SPV, counterparty, amount and filing link here is invented; none describes a real transaction or firm.
+
 Fixture-backed graph with 5 SPVs and 10 financing edges.
 Total disclosed fixture commitments: 13,865,000,000 USD.
 
@@ -9,6 +11,7 @@ Total disclosed fixture commitments: 13,865,000,000 USD.
 
 - jurisdiction: Delaware
 - sponsor: Kestrel Infrastructure Partners
+- data status: synthetic
 - purpose: Finance shell capacity leases for AI training campuses
 - source: https://www.sec.gov/Archives/edgar/data/0000000000/fixture-meridian.htm
 
@@ -16,6 +19,7 @@ Total disclosed fixture commitments: 13,865,000,000 USD.
 
 - jurisdiction: Ireland
 - sponsor: Stonebridge Digital Credit
+- data status: synthetic
 - purpose: Hold secured notes backed by accelerator purchase agreements
 - source: https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm
 
@@ -23,6 +27,7 @@ Total disclosed fixture commitments: 13,865,000,000 USD.
 
 - jurisdiction: Delaware
 - sponsor: Ridgewater Infrastructure
+- data status: synthetic
 - purpose: Fund build to suit data center shells for inference workloads
 - source: https://www.sec.gov/Archives/edgar/data/0000000000/fixture-cascadia.htm
 
@@ -30,6 +35,7 @@ Total disclosed fixture commitments: 13,865,000,000 USD.
 
 - jurisdiction: Cayman Islands
 - sponsor: Harborlight Asset Management
+- data status: synthetic
 - purpose: Acquire lease receivables from liquid cooled GPU clusters
 - source: https://www.sec.gov/Archives/edgar/data/0000000000/fixture-lumenpeak.htm
 
@@ -37,6 +43,7 @@ Total disclosed fixture commitments: 13,865,000,000 USD.
 
 - jurisdiction: Delaware
 - sponsor: Tanager Private Credit
+- data status: synthetic
 - purpose: Provide term loans secured by AI colocation contracts
 - source: https://www.sec.gov/Archives/edgar/data/0000000000/fixture-silverrail.htm
 

@@ -2,6 +2,10 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 
+# Every row says what it is. "synthetic" rows are invented for illustration:
+# names, amounts and filing links describe no real transaction.
+DATA_STATUSES = ("synthetic", "public_filing")
+
 
 @dataclass(frozen=True)
 class SourceFiling:
@@ -22,6 +26,7 @@ class SpvRecord:
     sponsoring_filer: str
     purpose_text: str
     source_filings: list[SourceFiling]
+    data_status: str
 
     def to_dict(self) -> dict[str, object]:
         payload = asdict(self)
@@ -39,6 +44,7 @@ class CounterpartyEdge:
     commitment_currency: str
     disclosure_date: str
     source_filings: list[SourceFiling]
+    data_status: str
 
     def to_dict(self) -> dict[str, object]:
         payload = asdict(self)
