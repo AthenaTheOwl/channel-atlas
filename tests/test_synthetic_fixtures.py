@@ -102,15 +102,16 @@ def test_loader_refuses_a_ledger_without_the_column(tmp_path: Path) -> None:
         load_records(ledger)
 
 
-def test_committed_2026q2_outputs_match_the_build() -> None:
+@pytest.mark.parametrize("quarter", QUARTERS)
+def test_committed_outputs_match_the_build(quarter: str) -> None:
     # The derived files are regenerated with `python -m channel_atlas build`,
     # never hand-edited: a fresh build must leave them byte-identical.
-    before = {path: path.read_bytes() for path in _derived("2026q2")}
+    before = {path: path.read_bytes() for path in _derived(quarter)}
     subprocess.run(
-        [sys.executable, "-m", "channel_atlas", "build", "--quarter", "2026q2"],
+        [sys.executable, "-m", "channel_atlas", "build", "--quarter", quarter],
         cwd=ROOT,
         text=True,
         capture_output=True,
         check=True,
     )
-    assert {path: path.read_bytes() for path in _derived("2026q2")} == before
+    assert {path: path.read_bytes() for path in _derived(quarter)} == before
