@@ -25,8 +25,9 @@ Branch name: `feat/0001-edgar-schemas`
   mode supported in this PR), plus
   `extract_8k_material_definitive(html)` that returns a list of
   candidate SPV-record dicts.
-- `tests/fixtures/edgar/0001045810-25-000123/document.html` — one
-  real Microsoft 8-K filing checked in for offline testing.
+- `tests/fixtures/edgar/0000000000-25-000123/document.html` — one
+  synthetic 8-K-shaped document under the placeholder CIK
+  `0000000000`, checked in for offline testing.
 - `tests/test_edgar_extract.py` — asserts that the parser produces at
   least one record against the fixture and that each record validates
   against `schemas/spv_record.schema.json`.

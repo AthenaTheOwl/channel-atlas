@@ -63,7 +63,7 @@
           "url": "https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm"
         }
       ],
-      "target": "Vantage Cloud Services"
+      "target": "Quillmoor Cloud Services"
     },
     {
       "commitment_amount": 1800000000.0,
@@ -242,6 +242,10 @@
       "kind": "counterparty"
     },
     {
+      "id": "Quillmoor Cloud Services",
+      "kind": "counterparty"
+    },
+    {
       "id": "Ridgewater Infrastructure",
       "kind": "sponsor",
       "source_filings": []
@@ -268,10 +272,6 @@
       "id": "Tanager Private Credit",
       "kind": "sponsor",
       "source_filings": []
-    },
-    {
-      "id": "Vantage Cloud Services",
-      "kind": "counterparty"
     }
   ]
 }

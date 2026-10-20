@@ -42,10 +42,12 @@ discipline that every downstream PR has to honor.
   "synergy", "cutting-edge", "demonstrates" (used as filler).
 
 - **R-CAT-009** — The first published report MUST cover the window
-  2024-01 through 2026-06 and include at minimum: Apollo, Blackstone,
-  Brookfield, KKR, Carlyle as sponsoring counterparties on the
-  private-credit side; Microsoft, Meta, Amazon, Google, Oracle on the
-  hyperscaler side.
+  2024-01 through 2026-06 and include at minimum five sponsoring
+  counterparties on the private-credit side (placeholders Sponsor A
+  through Sponsor E) and five counterparties on the hyperscaler side
+  (placeholders Hyperscaler A through Hyperscaler E). The spec names
+  no real firm; an entity enters the report only when a cited public
+  filing (R-CAT-004) puts it there.
 
 - **R-CAT-010** — The repo MUST include a `decisions/` directory and a
   `DEC-CAT-001-evidence-rubric.md` entry that documents what counts as

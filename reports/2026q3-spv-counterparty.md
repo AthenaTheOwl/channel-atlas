@@ -52,7 +52,7 @@ Total disclosed fixture commitments: 13,865,000,000 USD.
 - Kestrel Infrastructure Partners -> Meridian Compute Trust LLC: 2,100,000,000 USD (sponsor_commitment, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-meridian.htm)
 - Meridian Compute Trust LLC -> Aurora Model Systems: 1,700,000,000 USD (capacity_lease, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-meridian.htm)
 - Stonebridge Digital Credit -> Blue Mesa Accelerator Funding DAC: 1,450,000,000 USD (note_purchase, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm)
-- Blue Mesa Accelerator Funding DAC -> Vantage Cloud Services: 1,325,000,000 USD (gpu_lease, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm)
+- Blue Mesa Accelerator Funding DAC -> Quillmoor Cloud Services: 1,325,000,000 USD (gpu_lease, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-blue-mesa.htm)
 - Ridgewater Infrastructure -> Cascadia Data Center JV LP: 1,800,000,000 USD (equity_commitment, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-cascadia.htm)
 - Cascadia Data Center JV LP -> Cedar River Compute: 1,550,000,000 USD (built_to_suit_lease, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-cascadia.htm)
 - Harborlight Asset Management -> LumenPeak AI Lease Trust: 950,000,000 USD (warehouse_facility, https://www.sec.gov/Archives/edgar/data/0000000000/fixture-lumenpeak.htm)
