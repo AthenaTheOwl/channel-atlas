@@ -10,6 +10,7 @@ def build_graph(spvs: list[SpvRecord], edges: list[CounterpartyEdge]) -> dict[st
             "id": spv.legal_name,
             "kind": "spv",
             "jurisdiction": spv.jurisdiction,
+            "data_status": spv.data_status,
             "source_filings": [item.to_dict() for item in spv.source_filings],
         }
         nodes.setdefault(
@@ -28,8 +29,14 @@ def build_graph(spvs: list[SpvRecord], edges: list[CounterpartyEdge]) -> dict[st
                 "relationship_type": edge.relationship_type,
                 "commitment_amount": edge.commitment_amount,
                 "commitment_currency": edge.commitment_currency,
+                "data_status": edge.data_status,
                 "source_filings": [item.to_dict() for item in edge.source_filings],
             }
         )
-    return {"nodes": sorted(nodes.values(), key=lambda item: str(item["id"])), "edges": graph_edges}
+    statuses = {spv.data_status for spv in spvs} | {edge.data_status for edge in edges}
+    return {
+        "data_status": statuses.pop() if len(statuses) == 1 else "mixed",
+        "nodes": sorted(nodes.values(), key=lambda item: str(item["id"])),
+        "edges": graph_edges,
+    }
 

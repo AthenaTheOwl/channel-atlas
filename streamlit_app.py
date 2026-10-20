@@ -28,6 +28,10 @@ def fmt_usd(amount: float) -> str:
 st.set_page_config(page_title="channel-atlas", layout="wide")
 st.title("channel-atlas")
 st.caption("AI-infra SPV financing graph (2026q2) - every edge cites a source filing")
+st.info(
+    "illustrative synthetic fixture: every sponsor, SPV, counterparty, amount and "
+    "filing link is invented for the demo; none describes a real transaction or firm."
+)
 
 if not GRAPH_PATH.is_file():
     st.warning(

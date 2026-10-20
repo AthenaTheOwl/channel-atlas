@@ -3,14 +3,25 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
-from .models import CounterpartyEdge, SourceFiling, SpvRecord
+from .models import DATA_STATUSES, CounterpartyEdge, SourceFiling, SpvRecord
+
+
+def _data_status(path: Path, line: int, row: dict[str, str]) -> str:
+    status = (row.get("data_status") or "").strip()
+    if status not in DATA_STATUSES:
+        raise ValueError(
+            f"{path}:{line}: data_status must be one of {', '.join(DATA_STATUSES)}; "
+            f"got {status or 'nothing'}. Mark invented rows 'synthetic'."
+        )
+    return status
 
 
 def load_records(path: Path) -> tuple[list[SpvRecord], list[CounterpartyEdge]]:
     spvs: dict[str, SpvRecord] = {}
     edges: list[CounterpartyEdge] = []
     with path.open(encoding="utf-8", newline="") as handle:
-        for row in csv.DictReader(handle):
+        for line, row in enumerate(csv.DictReader(handle), start=2):
+            status = _data_status(path, line, row)
             filing = SourceFiling(
                 url=row["source_url"],
                 accession_number=row["accession_number"],
@@ -24,6 +35,7 @@ def load_records(path: Path) -> tuple[list[SpvRecord], list[CounterpartyEdge]]:
                 sponsoring_filer=row["sponsoring_filer"],
                 purpose_text=row["purpose_text"],
                 source_filings=[filing],
+                data_status=status,
             )
             edges.append(
                 CounterpartyEdge(
@@ -35,6 +47,7 @@ def load_records(path: Path) -> tuple[list[SpvRecord], list[CounterpartyEdge]]:
                     commitment_currency=row["commitment_currency"],
                     disclosure_date=row["disclosure_date"],
                     source_filings=[filing],
+                    data_status=status,
                 )
             )
     return sorted(spvs.values(), key=lambda item: item.spv_id), sorted(
