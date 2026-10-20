@@ -116,10 +116,10 @@ reports/              2026q2 and 2026q3 graph JSON + markdown reports
 schemas/  specs/  decisions/  docs/  tests/
 ```
 
-## License
-
-MIT. See [LICENSE](LICENSE).
-
 ## Method update
 
 [October method update: Follow the cash path before adding the edges](docs/financing-exposure.md).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
