@@ -27,14 +27,16 @@ These roles exist in the spec ledger; not all are implemented in v0.
 
 ## Voice constraints
 
-- Plain assertions. No marketing words. The banned set lands in
-  `scripts/voice_lint.py::BANNED_FAIL` in spec 0002.
+- Plain assertions. No marketing words. The banned set is
+  `scripts/voice_lint.py::BANNED_FAIL` (R-CAT-008), checked against
+  `README.md` and `reports/`.
 - No antithetical reversals as a structural device.
 - Numbers cite sources. A claim without a filing URL is a bug.
 
-## Gates (will land in spec 0002)
+## Gates
 
-Before merging, every contributor — human or agent — will run:
+Before merging, every contributor — human or agent — runs (CI runs
+the same scripts):
 
 ```bash
 uv run pytest
