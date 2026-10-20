@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -15,9 +16,13 @@ from src.channel_atlas.validation import read_jsonl
 
 ROOT = Path(__file__).resolve().parents[1]
 QUARTERS = ("2026q2", "2026q3")
-# Real firms the fictional 2026q2 SPVs were once attributed to. The fixtures are
-# invented; no real sponsor may appear beside an invented deal and amount.
-REAL_FIRMS = ("Apollo", "Brookfield")
+# Real firms that earlier fixtures and specs named as sponsors or research targets.
+# The fixtures are invented and the specs use placeholders; no real firm may appear
+# beside an invented deal and amount or as an uncited research target.
+REAL_FIRMS = (
+    "Apollo", "Blackstone", "Brookfield", "KKR", "Carlyle",
+    "Microsoft", "Meta", "Amazon", "Google", "Oracle",
+)
 
 
 def _derived(quarter: str) -> list[Path]:
@@ -39,6 +44,15 @@ def test_no_real_firm_is_named_as_a_fixture_sponsor(quarter: str) -> None:
         text = path.read_text(encoding="utf-8")
         for firm in REAL_FIRMS:
             assert firm not in text, f"{path.relative_to(ROOT)} names {firm}"
+
+
+def test_specs_and_docs_name_no_real_firm_as_a_target() -> None:
+    paths = sorted((ROOT / "specs").rglob("*.md")) + sorted((ROOT / "docs").rglob("*.md"))
+    assert paths
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        for firm in REAL_FIRMS:
+            assert re.search(rf"\b{firm}\b", text) is None, f"{path.relative_to(ROOT)} names {firm}"
 
 
 @pytest.mark.parametrize("quarter", QUARTERS)
