@@ -13,8 +13,8 @@ Ordered task list for the first 2-3 PRs after the scaffold.
 - [ ] Add `src/channel_atlas/extract/edgar.py` with a fetch-and-cache
       function plus a stub `extract_8k_material_definitive` parser.
 - [ ] Add one fixture filing at
-      `tests/fixtures/edgar/0001045810-25-000123.html` (a real public
-      filing checked in).
+      `tests/fixtures/edgar/0000000000-25-000123.html` (a synthetic
+      8-K-shaped document under the placeholder CIK).
 - [ ] Add `tests/test_edgar_extract.py` asserting the parser returns
       a non-empty record list against the fixture.
 - [ ] Add `decisions/DEC-CAT-001-evidence-rubric.md`.
@@ -23,9 +23,10 @@ Ordered task list for the first 2-3 PRs after the scaffold.
 
 - [ ] Add `src/channel_atlas/graph/build.py` taking a list of records
       and producing a validated graph.
-- [ ] Add `data/aliases.yaml` with seed entity aliases (Microsoft,
-      Apollo, Blackstone, Brookfield, KKR, Carlyle, Meta, Amazon,
-      Google, Oracle).
+- [ ] Add `data/aliases.yaml` with seed entity aliases for the
+      placeholder counterparties in R-CAT-009 (Sponsor A through
+      Sponsor E, Hyperscaler A through Hyperscaler E). Real legal
+      names enter the table only alongside a cited filing.
 - [ ] Add `eval/citation_faithfulness.py` running R-CAT-004.
 - [ ] Add `scripts/voice_lint.py` with the banned-term list.
 - [ ] Wire `pytest` to exercise the graph builder against the EDGAR
